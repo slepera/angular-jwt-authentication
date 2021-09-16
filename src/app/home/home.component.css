@@ -1,0 +1,16 @@
+table {
+  width: 100%;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #627392;
+}
+
+.mat-row:nth-child(odd) {
+  background-color: #7fa1c0;
+}
+
+.mat-header-cell {
+  background-color: #74b48d;
+  font-size: medium;
+}
