@@ -50,8 +50,16 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.f.email.value, this.f.password.value)
             .pipe(first())
             .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
+                user => {
+                    if(user.token!=null)
+                    {
+                        this.router.navigate([this.returnUrl]);
+                    }
+                    else
+                    {
+                        this.error = "Email or Password Incorrect";
+                        this.loading = false;
+                    }
                 },
                 error => {
                     this.error = error;
