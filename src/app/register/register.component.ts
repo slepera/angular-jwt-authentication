@@ -27,6 +27,8 @@ export class RegisterComponent implements OnInit {
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
             email: ['', Validators.required],
             password: ['', Validators.required]
         });
@@ -47,17 +49,18 @@ export class RegisterComponent implements OnInit {
         }
 
         this.loading = true;
-        this.authenticationService.register(this.f.first_name.value, this.f.last_name.value, this.f.email.value, this.f.password.value)
+        this.authenticationService.register(this.f.firstName.value, this.f.lastName.value, this.f.email.value, this.f.password.value)
             .pipe(first())
             .subscribe(
                 user => {
-                    if(user.token!=null)
+                    if(user.email!=null)
                     {
-                        this.router.navigate([this.returnUrl]);
+                        this.error = "Hello "+ user.firstName + ' '+ user.lastName+". You've been successfully registered!";
+                        this.loading = false;
                     }
                     else
                     {
-                        this.error = "Email or Password Incorrect";
+                        this.error = "User with this email already exists. Please try with a different email.";
                         this.loading = false;
                     }
                 },

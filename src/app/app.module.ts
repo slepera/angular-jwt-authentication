@@ -12,6 +12,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 
 import { MatTableModule } from '@angular/material/table';
+import { RegisterComponent } from './register';
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import { MatTableModule } from '@angular/material/table';
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        RegisterComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

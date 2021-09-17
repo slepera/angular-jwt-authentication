@@ -2,19 +2,19 @@
     <div class="card">
         <h4 class="card-header">Angular 8 JWT Login Example</h4>
         <div class="card-body">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="first_name">First Name</label>
-                    <input type="text" formControlName="first_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
-                    <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
-                        <div *ngIf="f.first_name.errors.required">First Name is required</div>
+                    <label for="firstName">First Name</label>
+                    <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
-                    <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
-                        <div *ngIf="f.last_name.errors.required">Last Name is required</div>
+                    <label for="lastName">Last Name</label>
+                    <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
                     </div>
                 </div>                
                 <div class="form-group">
@@ -33,10 +33,14 @@
                 </div>
                 <button [disabled]="loading" class="btn btn-primary">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
+                    Register
                 </button>
                 <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
             </form>
+            <button [disabled]="loading" class="btn btn-primary" [routerLink]="['/login']">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Login page
+            </button>
         </div>
     </div>
 </div>

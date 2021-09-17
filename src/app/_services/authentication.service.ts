@@ -20,15 +20,10 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    register(first_name: string, last_name: string, email: string, password: string) {
+    register(firstName: string, lastName: string, email: string, password: string) {
         
-        return this.http.post<any>(`/api/auth/register`, {first_name, last_name, email, password })
+        return this.http.post<any>(`/api/auth/register`, {firstName, lastName, email, password })
             .pipe(map(user => {                
-                if(user.token!=null)
-                {
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);    
-                }
                 return user;
             }));
         }
