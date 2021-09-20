@@ -1,25 +1,27 @@
-.card{
-    margin-left: auto;
-    margin-right: auto;
-    width: 25em;
-}
+mat-card {
+    display: contents;
+    justify-content: center;
+  }
 
-.card-header{
-    font-size: 250%;
-}
+  .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
 
-.card-body{
-    margin-left: auto;
-    margin-right: auto;
-    width: 20em;
-    font-size: 150%;
-}
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+  }
 
-.form-control{
-    margin-bottom:20px;
-    margin-left: 15px;
-}
+  .error {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: red;
+  }
 
-.btn-primary{
-    margin-right: 15px;
-}
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }

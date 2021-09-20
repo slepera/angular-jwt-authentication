@@ -13,14 +13,23 @@ import { LoginComponent } from './login';
 
 import { MatTableModule } from '@angular/material/table';
 import { RegisterComponent } from './register';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
     imports: [
+        MatCardModule,
+        MatInputModule,
+        MatButtonModule,
+        MatFormFieldModule,
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
         appRoutingModule,
-        MatTableModule
+        MatTableModule,
+        BrowserAnimationsModule
     ],
     declarations: [
         AppComponent,
