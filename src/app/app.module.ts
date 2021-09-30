@@ -18,6 +18,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {LogMonitorModule} from 'ngx-log-monitor';;
+import { LogComponent } from './log/log.component'
+
 @NgModule({
     imports: [
         MatCardModule,
@@ -29,13 +32,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         HttpClientModule,
         appRoutingModule,
         MatTableModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        LogMonitorModule
     ],
     declarations: [
         AppComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        LogComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "~11.2.12",
     "@angular/router": "~11.2.12",
     "@stomp/stompjs": "^6.1.2",
+    "ng-event-source": "^1.0.14",
+    "ngx-log-monitor": "^1.2.0",
     "rxjs": "~6.6.0",
     "stompjs": "^2.3.3",
     "tslib": "^2.0.0",
