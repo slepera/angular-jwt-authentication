@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {LogMonitorModule} from 'ngx-log-monitor';;
 import { LogComponent } from './log/log.component'
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
     imports: [
@@ -33,7 +34,8 @@ import { LogComponent } from './log/log.component'
         appRoutingModule,
         MatTableModule,
         BrowserAnimationsModule,
-        LogMonitorModule
+        LogMonitorModule,
+        NgxDatatableModule
     ],
     declarations: [
         AppComponent,

@@ -1,8 +1,26 @@
-<log-monitor
-    [logStream]="logStream$ | async"
-    theme="dark"
-    title="log messages"
-    [animated]="true"
-    [icons]="true"
-    [history]="restoredLogs" 
-></log-monitor>
+<div>
+    <h3>
+      <small>
+        <a href="javascript:void(0)" (click)="start()">Start</a> |
+        <a href="javascript:void(0)" (click)="stop()">Stop</a> |
+        <a href="javascript:void(0)" (click)="add()">Add</a> |
+        <a href="javascript:void(0)" (click)="remove()">Remove</a>
+      </small>
+    </h3>
+    <ngx-datatable
+      #mydatatable
+      class="material"
+      [headerHeight]="50"
+      [limit]="5"
+      [columnMode]="'force'"
+      [footerHeight]="50"
+      rowHeight="auto"
+      [trackByProp]="'updated'"
+      [rows]="rows"
+    >
+      <ngx-datatable-column name="date"></ngx-datatable-column>
+      <ngx-datatable-column name="component"></ngx-datatable-column>
+      <ngx-datatable-column name="level"></ngx-datatable-column>
+      <ngx-datatable-column name="message"></ngx-datatable-column>
+    </ngx-datatable>
+  </div>

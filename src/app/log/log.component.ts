@@ -1,46 +1,102 @@
-import { Component, OnInit } from '@angular/core';
-import {LogMessage as NgxLogMessage} from 'ngx-log-monitor';
-import { timer } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import { SseService } from './sse.service';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { UserService } from '@app/_services/user.service';
 
 @Component({
   selector: 'app-log',
   templateUrl: './log.component.html',
   styleUrls: ['./log.component.less']
 })
-export class LogComponent implements OnInit {
-  constructor(private sseService: SseService){}
+export class LogComponent {
+  @ViewChild('mydatatable') mydatatable: any;
 
-  ngOnInit() {
-    this.sseService
-      .getServerSentEvent(`/api/log/stream-sse-mvc`)
-      .subscribe(data => {
-        console.log(data);
-      }
-      );
+  count = 50;
+  rows: any[] = [];
+  active = true;
+  temp: any[] = [];
+  cols: any = ['date', 'level', 'component', 'message'];
+  log: any;
+
+  constructor(private cd: ChangeDetectorRef, private userService: UserService) {
+    this.userService.getLog(55).subscribe(
+      data => this.rows = data
+    );
+    // this.fetch(data => {
+    //   this.rows = data.map(d => {
+    //     d.updated = Date.now().toString();
+    //     return d;
+    //   });
+
+    //   this.temp = [...this.rows];
+    // });
+    //this.getLog(55);
+
+    this.start();
   }
 
-  restoredLogs: NgxLogMessage[] = [
-    {message: 'A simple restored log message'},
-    {message: 'A success restored message', type: 'SUCCESS'},
-    {message: 'A warning restored message', type: 'WARN'},
-    {message: 'An error restored message', type: 'ERR'},
-    {message: 'An info restored message', type: 'INFO'},
-  ];
+  randomNum(start: number, end: number): number {
+    return Math.floor(Math.random() * end) + start;
+  }
 
-  logs: NgxLogMessage[] = [
-    {message: 'A simple log message'},
-    {message: 'A success message', type: 'SUCCESS'},
-    {message: 'A warning message', type: 'WARN'},
-    {message: 'An error message', type: 'ERR'},
-    {message: 'An info message', type: 'INFO'},
-  ];
+  start(): void {
+    if (!this.active) {
+      return;
+    }
 
-  logStream$ = timer(0, 1000).pipe(
-    take(this.logs.length),
-    map(i => this.logs[i])
-  );
+    setInterval(() => {this.getLog(50)}, 5000);
+  }
 
+  getLog(i:number):void{
+    this.userService.getLog(i).subscribe(
+      data => {
+        this.rows = data.map(d => {
+          d.updated = Date.now().toString();
+          return d;
+          });
+        console.log(this.rows);
+        this.temp = [...this.rows];}
+    );
+  }
 
+  stop(): void {
+    this.active = false;
+  }
+
+  add() {
+    this.rows.splice(0, 0, this.temp[this.count++]);
+  }
+
+  remove() {
+    this.rows.splice(0, this.rows.length);
+  }
+
+  updateRandom() {
+    const rowNum = this.randomNum(0, 5);
+    const cellNum = this.randomNum(0, 3);
+    const newRow = this.randomNum(0, 100);
+    const prop = this.cols[cellNum];
+    const rows = this.rows;
+
+    if (rows.length) {
+      const row = rows[rowNum];
+      row[prop] = rows[newRow][prop];
+      row.updated = Date.now().toString();
+    }
+
+    this.rows = [...this.rows];
+
+    // this.cd.markForCheck();
+    // this.mydatatable.update();
+    this.start();
+  }
+
+  fetch(cb: any): void {
+    const req = new XMLHttpRequest();
+    req.open('GET', `assets/data/company.json`);
+
+    req.onload = () => {
+      cb(JSON.parse(req.response).file);
+    };
+
+    req.send();
+  }
 }
