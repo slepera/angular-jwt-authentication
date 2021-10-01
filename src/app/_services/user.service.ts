@@ -18,5 +18,8 @@ export class UserService {
     getAllCustomers(): Observable<any> {
         return this.http.get<any>('/ccs/api/customer/get-all-customers');
     }
+    getAllUsers(): Observable<any> {
+        return this.http.get<any>(`/api/users/all`);        
+    }
 
 }

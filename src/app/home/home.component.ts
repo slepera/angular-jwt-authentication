@@ -21,14 +21,13 @@ export class HomeComponent {
     str: string;
     test: Promise<any>;
 
-    constructor(private http: HttpClient) {
+    constructor(private userService: UserService) {
     }
 
     provaGet(){
-        return this.http.post<any>(`/api/auth/register`, "b")
-        .pipe(map(user => {         
-            return user;
-        }));
+        this.userService.getAllUsers().subscribe(         
+                data => console.log(data)
+        );
     }
 
     ngOnInit() {
