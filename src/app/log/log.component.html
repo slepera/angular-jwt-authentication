@@ -3,15 +3,13 @@
       <small>
         <a href="javascript:void(0)" (click)="start()">Start</a> |
         <a href="javascript:void(0)" (click)="stop()">Stop</a> |
-        <a href="javascript:void(0)" (click)="add()">Add</a> |
-        <a href="javascript:void(0)" (click)="remove()">Remove</a>
       </small>
     </h3>
     <ngx-datatable
       #mydatatable
       class="material"
       [headerHeight]="50"
-      [limit]="5"
+      [limit]="100"
       [columnMode]="'force'"
       [footerHeight]="50"
       rowHeight="auto"
