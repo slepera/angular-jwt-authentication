@@ -1,3 +1,4 @@
+import { HttpRequest, HttpResponse } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '@app/_services/user.service';
 import { interval, Observable, Subscription } from 'rxjs';
@@ -18,69 +19,66 @@ export class LogComponent implements OnDestroy{
   temp: any[] = [];
   cols: any = ['date', 'level', 'component', 'message'];
   log: any;
-  subscribtion: any;
+  subscribtion: boolean
   i:number=0;
   lastId:number=50;
   nmax=20;
   timeInterval: Subscription;
 
   constructor(private userService: UserService) {
-    this.start();
-  }
-
-  start(): void {
-    this.active = true;
     this.getLog();
   }
 
+  start(): void {  
+
+  }
+
  
-  getLog():void{
+  getLog():void{  
     this.userService.getLog(this.lastId+1).subscribe(
       data => 
       {
-        if (data.status != 200) 
-        {
-            console.log("diverso da 200");
-            console.log(data.statusText);
+            if (data.status != 200) 
+            {
+                console.log("diverso da 200");
+                console.log(data.statusText);
+                new Promise(resolve => setTimeout(resolve, 1000));
+                this.getLog();                
+            } 
+            else 
+            {
+                console.log("uguale a 200");
+                console.log(data.status + "  " + data.statusText); 
+                console.log(this.rows);
+                console.log(data.body);
+                this.rows= this.rows.concat(data.body);
+                if(this.rows.length>this.nmax){
+                  this.rows=this.rows.slice(this.rows.length-this.nmax);
+                }
+                this.lastId = this.rows[this.rows.length-1].id;
+                console.log(this.rows);
+                this.getLog();                
+            }
+          }
+      ,
+      error =>
+      {
+            console.log("error");
             new Promise(resolve => setTimeout(resolve, 1000));
             this.getLog();
-        } 
-        else 
-        {
-            console.log("uguale a 200");
-            console.log(data.status + "  " + data.statusText); 
-            console.log(this.rows);
-            console.log(data.body);
-            this.rows= this.rows.concat(data.body);
-            if(this.rows.length>this.nmax){
-              this.rows=this.rows.slice(this.rows.length-this.nmax);
-            }
-            this.lastId = this.rows[this.rows.length-1].id;
-            console.log(this.rows);
-            this.getLog();
         }
-    },
-    error =>
-    {
-      console.log("error");
-      new Promise(resolve => setTimeout(resolve, 1000));
-      this.getLog();
-    }
 
-    );
+    );    
   }
 
   stop(): void {
-    this.active = false;
+
   }
 
-  add() {
-    this.rows.splice(0, 0, this.temp[this.count++]);
-  }
+
 
   ngOnDestroy(): void{
     this.timeInterval.unsubscribe();
-    this.subscribtion.unsubscribe();
   }
 
   async subscribe() {
