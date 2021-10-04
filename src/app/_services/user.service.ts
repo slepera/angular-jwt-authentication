@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
@@ -21,8 +21,8 @@ export class UserService {
     getAllUsers(): Observable<any> {
         return this.http.get<any>(`/api/users/all`);        
     }
-    getLog(id:number): Observable<any> {
-        return this.http.get<any>(`/api/log/log/last/`+id);       
+    getLog(id:number): Observable<HttpResponse<any>> {
+        return this.http.get<any>(
+            `/api/log/log/last/`+id, { observe: 'response' });
     }
-
 }
