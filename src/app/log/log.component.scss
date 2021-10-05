@@ -1,8 +1,37 @@
- .level-info {
-  color: white;
-  background-color: red;
+::ng-deep .level-info {
+  color: rgb(190, 194, 233);
+  background-color: rgb(153, 201, 156);
 }
-.is-info {
-  color: white;
-  background-color: red;
+::ng-deep .level-error {
+  color: rgb(190, 194, 233);
+  background-color: rgb(199, 74, 43);
+}
+::ng-deep .level-warning {
+  color: rgb(13, 13, 14);
+  background-color: rgb(235, 238, 92);
+}
+::ng-deep .is-info {
+  color: rgb(114, 207, 95);
+  background-color: rgb(255, 174, 0);
+}
+
+ngx-datatable {
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .ngx-datatable.material .datatable-header .datatable-header-cell {
+  text-align: left;
+  padding: 0.9rem 1.2rem;
+  font-weight: 400;
+  background-color: rgb(182, 196, 62);
+}
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  .ngx-datatable {
+    height: 100vh;
+  }
 }

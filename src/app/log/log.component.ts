@@ -37,8 +37,12 @@ export class LogComponent implements OnDestroy{
   }
 
   getRowClass(row) {
-    return {
-      'level-info': row.level === 'Info'
+    if(row.level === 'Info'){
+      return 'level-info';
+    }else if (row.level === 'Error'){
+      return 'level-error';
+    }else if (row.level === 'Warning'){
+      return 'level-warning';
     };
   }
   getCellClass({ row, column, value }): any {

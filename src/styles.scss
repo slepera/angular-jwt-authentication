@@ -34,12 +34,3 @@ html, body {
 *:before {
   @include box-sizing(border-box);
 }
-
-.level-info {
-  color: rgb(190, 194, 233);
-  background-color: rgb(153, 201, 156);
-}
-.is-info {
-  color: rgb(114, 207, 95);
-  background-color: rgb(255, 174, 0);
-}
