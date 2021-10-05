@@ -15,10 +15,11 @@
       rowHeight="auto"
       [trackByProp]="'updated'"
       [rows]="rows"
+      [rowClass]="getRowClass"
     >
       <ngx-datatable-column name="date"></ngx-datatable-column>
       <ngx-datatable-column name="component"></ngx-datatable-column>
-      <ngx-datatable-column name="level"></ngx-datatable-column>
+      <ngx-datatable-column name="level" headerClass="is-info" [cellClass]="getCellClass"></ngx-datatable-column>
       <ngx-datatable-column name="message"></ngx-datatable-column>
     </ngx-datatable>
   </div>
