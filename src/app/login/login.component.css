@@ -21,6 +21,13 @@ mat-card {
     background-color: red;
   }
 
+  .info {
+    padding: 16px;
+    width: 300px;
+    color: white;
+    background-color: rgb(74, 221, 94);
+  }
+
   .button {
     display: flex;
     justify-content: flex-end;

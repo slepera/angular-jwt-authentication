@@ -38,6 +38,9 @@
             <p *ngIf="error" class="error">
                 {{ error }}
             </p>
+            <p *ngIf="info" class="info">
+                {{ info }}
+            </p>
             <button [disabled]="loading" mat-button>
                 Register
             </button>

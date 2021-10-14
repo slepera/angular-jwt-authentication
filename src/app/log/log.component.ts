@@ -45,10 +45,11 @@ export class LogComponent implements OnDestroy{
       return 'level-warning';
     };
   }
+
   getCellClass({ row, column, value }): any {
-    return {
-      'is-info': value === 'Info'
-    };
+    // return {
+    //   'is-info': value === 'Info'
+    // };
   }
   getLog():void{
     if(this.authenticationService.currentUserValue!=undefined)

@@ -6,7 +6,7 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({ 
-    styleUrls: ['../login/login.component.css'],
+    styleUrls: ['register.component.css'],
     templateUrl: 'register.component.html' 
 })
 export class RegisterComponent implements OnInit {
@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     error = '';
+    info = '';
 
     constructor(
         private formBuilder: FormBuilder,
@@ -58,12 +59,14 @@ export class RegisterComponent implements OnInit {
                 user => {
                     if(user.email!=null)
                     {
-                        this.error = "Hello "+ user.firstName + ' '+ user.lastName+". You've been successfully registered!";
+                        this.info = "Hello "+ user.firstName + ' '+ user.lastName+". You've been successfully registered!";
+                        this.error = '';
                         this.loading = false;
                     }
                     else
                     {
                         this.error = "User with this email already exists. Please try with a different email.";
+                        this.info = '';
                         this.loading = false;
                     }
                 },

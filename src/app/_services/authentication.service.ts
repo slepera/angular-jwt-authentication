@@ -22,7 +22,7 @@ export class AuthenticationService {
 
     register(firstName: string, lastName: string, email: string, password: string) {
         
-        return this.http.post<any>(`/api/auth/register`, {firstName, lastName, email, password })
+        return this.http.post<any>(`/api/users/register`, {firstName, lastName, email, password })
             .pipe(map(user => {                
                 return user;
             }));
@@ -31,7 +31,7 @@ export class AuthenticationService {
 
     login(email: string, password: string) {
         
-        return this.http.post<any>(`/api/auth/login`, { email, password })
+        return this.http.post<any>(`/api/users/login`, { email, password })
             .pipe(map(user => {                
                 if(user.token!=null)
                 {
