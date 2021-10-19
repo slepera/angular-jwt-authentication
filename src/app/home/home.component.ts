@@ -18,36 +18,14 @@ import { Subscription } from 'rxjs';
 })
 
 export class HomeComponent {
-    loading = false;
-    str: string;
-    test: Promise<any>;
-    log: any;
-    stopLog = false;
     constructor(private userService: UserService) {
         
     }
 
     provaGet(){
-        this.stopLog=false;
-        let subscription;
-        let idLog = 55;
-        setInterval( () => {
-            if( this.stopLog == false){
-                subscription = this.userService.getLog(idLog).subscribe(
-                    log => console.log(log)
-                );
-            }else{
-                subscription.unsubscribe();
-                return;
-            }
-         }, 2000);
-        // this.userService.getAllUsers().subscribe(         
-        //         data => console.log(data)
-        // );
     }
 
     stopProva(){
-        this.stopLog=true;
     }
 
     
