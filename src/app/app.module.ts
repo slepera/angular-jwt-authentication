@@ -18,9 +18,16 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {LogMonitorModule} from 'ngx-log-monitor';;
+import {LogMonitorModule} from 'ngx-log-monitor';
 import { LogComponent } from './log/log.component'
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { OperationComponent } from './operation/operation.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatTabsModule} from '@angular/material/tabs';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { FlexLayoutModule } from '@angular/flex-layout';;
+import { SatelliteFormComponent } from './satellite-form/satellite-form.component';
+import { GpsReceiverFormComponent } from './gps-receiver-form/gps-receiver-form.component'
 
 @NgModule({
     imports: [
@@ -35,7 +42,11 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
         MatTableModule,
         BrowserAnimationsModule,
         LogMonitorModule,
-        NgxDatatableModule
+        NgxDatatableModule,
+        MatSelectModule,
+        MatTabsModule,
+        ScrollingModule,
+        FlexLayoutModule
     ],
     declarations: [
         AppComponent,
@@ -43,7 +54,11 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
         LoginComponent,
         RegisterComponent,
         LogComponent
-    ],
+,
+        OperationComponent,
+        SatelliteFormComponent
+,
+        GpsReceiverFormComponent    ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

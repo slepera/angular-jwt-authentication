@@ -1,0 +1,19 @@
+.my-form-group {
+    display: flex;
+  }
+
+.form-group{
+    margin: 0 20px 0 10px;
+}
+
+.my-mat-form{
+    width: 6.5vw;
+}
+
+h3{
+    text-align: center;
+}
+
+.container{
+    margin: 20px;
+}
